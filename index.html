@@ -5,7 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Mason Stanke — creative portfolio in video production, visual storytelling, design and strategy.">
 <title>Mason Stanke — Creative Portfolio</title>
-
+<meta property="og:type" content="website">
+<meta property="og:title"
+      content="Mason Stanke | Creative Portfolio">
+<meta property="og:description"
+      content="Creative communications, marketing strategy,
+      video production, and visual storytelling.
+      Explore the work of Mason Stanke.">
 <style>
 :root{
   --ink:#f9f6ff;
@@ -440,9 +446,12 @@ main{overflow:hidden}
     <div class="eyebrow">03 / Motion &amp; social</div>
     <h2>Press <span style="color:var(--mint)">play.</span></h2>
     <p class="lead">
-      Video projects for public communication and business storytelling.
-      The Facebook collections open the original published Reels;
-      their titles and contents will be curated as we review them.
+  A collection of video projects developed for public
+  communication, brand storytelling, and digital
+  engagement. Explore original content created for
+  the City of Faribault, Junk Truck MN, and
+  M&M Resources.
+</p>
     </p>
 
     <div class="feature" style="margin:30px 0">
@@ -492,9 +501,9 @@ main{overflow:hidden}
     </div>
 
     <p class="muted" style="font-size:.85rem">
-      Facebook may require a login to watch some videos.
-      Video thumbnails and individual descriptions can be added
-      as the collection is curated.
+    <p class="muted" style="font-size:.85rem">
+  Some Facebook videos may require a login to view.
+</p>
     </p>
   </div>
 </section>
@@ -643,18 +652,23 @@ main{overflow:hidden}
   <div class="wrap">
     <div class="eyebrow">05 / The person behind the projects</div>
     <h2>Curious by <span style="color:var(--lav)">default.</span></h2>
-    <p class="lead">
-      I'm a creative communicator who loves finding a new angle on a
-      familiar problem. Whether it's translating technical information
-      into a video, building a campaign, or turning an idea into a
-      visual story, I care about making the message click.
-    </p>
-    <p class="lead">
-      My work spans municipal communications, marketing, brand
-      storytelling, design, and academic presentations. I bring
-      research, creative direction, and hands-on production together—
-      then keep digging until the idea works.
-    </p>
+   <p class="lead">
+  I'm a creative communicator and marketing professional
+  who believes complex ideas deserve clear, compelling
+  storytelling. My experience spans municipal
+  communications, marketing strategy, brand development,
+  visual design, and digital content production.
+</p>
+
+<p class="lead">
+  I'm currently pursuing my MBA at Johns Hopkins
+  Carey Business School, bringing together creative
+  thinking, business strategy, and analytical
+  decision-making. Whether developing a campaign,
+  translating technical information, or building a
+  visual story, I focus on making ideas accessible,
+  engaging, and meaningful.
+</p>
     <div class="note">
       <strong>More on the way:</strong>
       Deeper project case studies and featured video descriptions
@@ -737,23 +751,37 @@ main{overflow:hidden}
 <!-- CONTACT -->
 <section class="foot" id="contact">
   <div class="wrap">
-    <div class="eyebrow">07 / Let's make something</div>
+    <div class="eyebrow">07 / Let's connect</div>
+
     <h2>
       Have an idea worth
-      <span style="color:var(--pink)">watching?</span>
+      <span style="color:var(--pink)">exploring?</span>
     </h2>
-    <p class="lead">I'd love to hear about it.</p>
+
+    <p class="lead">
+      Whether you're interested in collaborating, discussing
+      an opportunity, or simply connecting, I'd love to hear from you.
+    </p>
 
     <div class="actions">
       <a class="btn"
-         href="mailto:?subject=Portfolio%20inquiry%20for%20Mason%20Stanke">
-        Start an email ↗
+         href="mailto:MasonStanke@gmail.com?subject=Portfolio%20Inquiry">
+        Email me ↗
+      </a>
+
+      <a class="btn secondary"
+         href="https://www.linkedin.com/in/mason-s-486a87225"
+         target="_blank"
+         rel="noopener noreferrer">
+        Connect on LinkedIn ↗
       </a>
     </div>
 
-    <p class="muted" style="font-size:.82rem">
-      Contact address coming soon. For now, the email button
-      opens a draft without a recipient.
+    <p class="muted" style="margin-top:20px">
+      Email:
+      <a href="mailto:MasonStanke@gmail.com">
+        MasonStanke@gmail.com
+      </a>
     </p>
 
     <div class="footerline">
@@ -762,120 +790,3 @@ main{overflow:hidden}
     </div>
   </div>
 </section>
-
-</main>
-
-<script>
-const city=[
-  ['Wastewater Treatment Facility','1106700168574006'],
-  ['Property Maintenance','1286511704551169'],
-  ['ReLeaf','1009811491773319'],
-  ['Street Sweeper','2270970240308234'],
-  ['Hydrant Flushing','1309618624438847'],
-  ['National Night Out Mascot','1200168665576336'],
-  ['Safe Summer Kickoff','1541923564304701'],
-  ['Good Neighbors','1243462937852217']
-].map(([title,id])=>({
-  title,
-  url:'https://www.facebook.com/reel/'+id
-}));
-
-let active='junk',shown=12;
-const collections={city};
-const labels={
-  junk:'Junk Truck MN',
-  mm:'M&M Resources',
-  city:'City of Faribault'
-};
-const box=document.getElementById('videos');
-const status=document.getElementById('video-status');
-const more=document.getElementById('more');
-
-function render(){
-  const items=collections[active]||[];
-  box.replaceChildren();
-
-  if(!items.length){
-    status.textContent='Video links could not be loaded. Check that the two JSON files are in the data folder.';
-    more.hidden=true;
-    return;
-  }
-
-  status.textContent=`Showing ${Math.min(shown,items.length)} of ${items.length} ${labels[active]} videos`;
-
-  items.slice(0,shown).forEach((v,i)=>{
-    const a=document.createElement('a');
-    a.className='video';
-    a.href=v.url;
-    a.target='_blank';
-    a.rel='noopener noreferrer';
-
-    const play=document.createElement('span');
-    play.className='play';
-    play.textContent='▶';
-
-    const title=document.createElement('span');
-    title.className='label';
-    title.textContent=v.title||(
-      v.featured_animation
-        ? 'Featured original animation'
-        : `${labels[active]} · Video ${i+1}`
-    );
-
-    const sub=document.createElement('small');
-    sub.textContent='Watch on Facebook ↗';
-
-    a.append(play,title,sub);
-    box.append(a);
-  });
-
-  more.hidden=shown>=items.length;
-}
-
-document.querySelectorAll('.tab').forEach(btn=>
-  btn.addEventListener('click',()=>{
-    active=btn.dataset.set;
-    shown=12;
-
-    document.querySelectorAll('.tab').forEach(b=>
-      b.setAttribute('aria-pressed',String(b===btn))
-    );
-
-    render();
-  })
-);
-
-more.addEventListener('click',()=>{
-  shown+=12;
-  render();
-});
-
-document.getElementById('year').textContent=new Date().getFullYear();
-
-Promise.all([
-  fetch('data/junk-truck-videos.json').then(r=>{
-    if(!r.ok)throw Error(r.status);
-    return r.json();
-  }),
-  fetch('data/mm-resources-videos.json').then(r=>{
-    if(!r.ok)throw Error(r.status);
-    return r.json();
-  })
-]).then(([junk,mm])=>{
-  collections.junk=junk.videos;
-  collections.mm=mm.videos;
-  render();
-}).catch(()=>{
-  active='city';
-
-  document.querySelectorAll('.tab').forEach(b=>
-    b.setAttribute('aria-pressed',String(b.dataset.set==='city'))
-  );
-
-  render();
-  status.textContent='Showing City videos. Other collections will appear once the JSON files are available.';
-});
-</script>
-
-</body>
-</html>
