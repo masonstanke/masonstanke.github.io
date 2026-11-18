@@ -1124,5 +1124,38 @@ Promise.allSettled([
 });
 </script>
 
+<script>
+document.querySelectorAll(
+  '#work .card, #junk-design .card'
+).forEach(card => {
+  const img = card.querySelector('img');
+  if (!img || img.closest('a')) return;
+
+  // Open the full PDF if one is linked,
+  // otherwise open the original image.
+  const documentLink = card.querySelector('a.more');
+  const destination = documentLink
+    ? documentLink.getAttribute('href')
+    : img.getAttribute('src');
+
+  if (!destination) return;
+
+  const link = document.createElement('a');
+  link.href = destination;
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  link.setAttribute(
+    'aria-label',
+    'Open ' + (card.querySelector('h3')?.textContent || 'project')
+  );
+
+  img.parentNode.insertBefore(link, img);
+  link.appendChild(img);
+
+  img.style.cursor = 'pointer';
+  link.style.display = 'block';
+});
+</script>
+
 </body>
 </html>
